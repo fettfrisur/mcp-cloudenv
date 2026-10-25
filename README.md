@@ -9,6 +9,28 @@ contracts from configuration to observed behavior, and leaves reviewable evidenc
 It applies to any project. The first executable toolchain profile is for
 `fettfrisur/atproto-mcp`: Linux, Node, npm, TypeScript and Cloudflare Workers tooling.
 
+## Recoverable agent feedback loop
+
+The [agent loop](docs/agent-loop.md) adds a small Python/SQLite controller that
+starts independent builder, reviewer and verifier invocations at explicit stages.
+Findings trigger remediation and re-review. Crashes, missing/invalid reports and
+timeouts retry within persistent budgets; exhaustion ends visibly blocked.
+Immutable candidate commits and per-attempt Git clones fence late work. A fixed
+acceptance command runs independently of agent claims. The original source is
+unchanged until you separately adopt the candidate.
+
+Try the credential-free, scripted fault demonstration on Linux:
+
+```sh
+python3 -m loop.demo --directory /tmp/agent-loop-demo --scenario review:empty
+```
+
+For actual model work, configure the Codex CLI backend and run its preflight as
+described in the runbook. This controller needs an explicitly configured host and
+supervisor. It is not automatically installed in Codex Cloud, and the demonstration
+does not claim to evaluate live models. See the [specification](docs/agent-loop-spec.md)
+and [verification record](docs/agent-loop-validation.md) for scope and evidence.
+
 ## Set up in Codex Cloud
 
 1. On web/desktop, create an environment and select **mcp-cloudenv** plus your

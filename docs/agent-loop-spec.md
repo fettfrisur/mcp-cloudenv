@@ -69,6 +69,17 @@ Git metadata; abandoned actors cannot write the accepted repository through shar
 worktree metadata. This is crash isolation, not a security boundary against hostile
 same-user processes. Codex sandboxing/provider permissions remain applicable.
 
+Git promotion imports and pins an immutable object before the SQLite transaction;
+SQLite's accepted commit ID is authoritative. A persisted snapshot marker permits
+idempotent recovery after import. Acceptance checks have their own durable dispatch
+intent and exit record, so controller restart reuses their result. Setup/Git
+commands have finite deadlines too. Linux workers use child subreaping and pidfds
+to clean ordinary detached descendants before reporting completion. This does not
+promise containment after the supervisor itself is killed; isolated attempt clones
+still fence late output, and stronger process containment requires a host cgroup.
+Partial run initialization is never a resumable workflow: only an atomically
+published initial DB is opened; use a new directory after failed initialization.
+
 ## Evidence and acceptance
 
 The acceptance command is fixed at run creation, runs independently with a timeout,
