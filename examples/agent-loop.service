@@ -1,0 +1,20 @@
+[Unit]
+Description=Recoverable coding agent workflow
+After=network-online.target
+StartLimitIntervalSec=300
+StartLimitBurst=5
+
+[Service]
+Type=simple
+# Install this as a user service. Replace the three absolute paths first.
+WorkingDirectory=/absolute/path/to/mcp-cloudenv
+ExecStart=/usr/bin/python3 -m loop.controller run --state /absolute/persistent/run
+Restart=on-failure
+RestartSec=5
+# A durable blocked result exits 2 and requires operator attention, not restart.
+RestartPreventExitStatus=2
+KillMode=process
+UMask=0077
+
+[Install]
+WantedBy=default.target

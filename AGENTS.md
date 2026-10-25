@@ -5,6 +5,13 @@ with it in Codex Cloud. Read `.agents/skills/maintain-mcp/SKILL.md` at the start
 every development, review, debugging, maintenance, or release task. Despite its
 name, the evidence-chain procedure applies to any Git project and language.
 
+For building or operating the recoverable multi-agent workflow, read
+`docs/agent-loop-spec.md`, `docs/agent-loop.md` and `docs/agent-loop-validation.md`.
+The controller owns handoffs, retries and budgets; its actor prompts deliberately
+do not recursively start more workflows. Distinguish scripted fault tests, actual
+model execution and hosted Cloud integration. Do not claim that committing this
+controller installs a persistent service or activates Cloud hooks.
+
 ## Proactive triggers
 
 Run a proportionate ground-truth check:

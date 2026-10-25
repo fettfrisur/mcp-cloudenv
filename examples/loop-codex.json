@@ -1,0 +1,10 @@
+{
+  "backend": "codex",
+  "executable": "codex",
+  "timeout": 900,
+  "check_timeout": 300,
+  "max_attempts": 3,
+  "max_remediations": 4,
+  "max_total_attempts": 30,
+  "check": ["python3", "-m", "unittest", "discover", "-s", "tests", "-v"]
+}
