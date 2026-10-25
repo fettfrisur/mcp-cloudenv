@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "package_name": "atproto-mcp",
+  "required_scripts": ["types", "typecheck", "test", "build"],
+  "optional_scripts": ["eval:conversation:verify"],
+  "install_inputs": ["package.json", "package-lock.json", ".npmrc"],
+  "build_directory": "dist"
+}

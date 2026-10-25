@@ -1,0 +1,4 @@
+interface:
+  display_name: "MCP Development Loop"
+  short_description: "Verify runtime, changes, evidence, and release readiness"
+  default_prompt: "Use $maintain-mcp to prepare this workspace and carry a change through verification."
